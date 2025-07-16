@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        display: grid;
+        background-color: lightslategrey;
+        
+    }
+    .card{
+        display: grid;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 10px;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr auto auto;
+        gap: 10px;
+    }
+    .amount {
+        font-size: 24px;
+        color: green;
+        grid-column: 1 / -1;
+
+    }
+
+    .card-name {
+        font-weight: bold;
+        text-align: start;
+    }
+
+    .card-icon img {
+        width: 50px;
+        height: auto;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-name">Universal</div>
+            <div class="card-description">This is a universal card.</div>
+            <div class="amount">$9,925</div>
+            <div class="card-no">*4859</div>
+            <div class="card-icon"><img src="./D747D858-E295-47DC-90D2-205793804AC2.png" alt=""></div>
+        </div>
+    </div>
+    
+</body>
+</html>
