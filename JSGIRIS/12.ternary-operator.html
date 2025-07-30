@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ehliyet Yaşı Kontrol</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function checkAge() {
+      let age = parseInt(document.getElementById("ageInput").value);
+      let resultDiv = document.getElementById("result");
+
+      if (isNaN(age) || age <= 0) {
+        resultDiv.innerHTML = "Lütfen geçerli bir yaş giriniz.";
+        return;
+      }
+
+      resultDiv.innerHTML = age < 16
+        ? "Ehliyet alamazsın."
+        : age < 18
+        ? "M veya A1 sınıfı motorlu araçlar için ehliyet alınabilir."
+        : "B sınıfı ehliyet alabilirsin.";
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Ehliyet Alabilir Miyim?</h2>
+  <input type="number" id="ageInput" placeholder="Yaşınızı giriniz">
+  <button onclick="checkAge()">Kontrol Et</button>
+  <div id="result"></div>
+
+</body>
+</html>

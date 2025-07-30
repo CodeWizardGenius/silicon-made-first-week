@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Bilgileri</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+            color: #007acc;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .true { color: green; font-weight: bold; }
+        .false { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kullanıcı Bilgileri</h1>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const ad = "Ahmet";
+        const soyad = "Yılmaz";
+        const yas = 30;
+        const tckn = "12345678901";
+        const kediSayini = 2;
+        const backend = true;
+        const frontend = false;
+        const fullstack = backend && frontend;
+
+        document.getElementById("output").innerHTML = `
+            <p><strong>Ad:</strong> ${ad}</p>
+            <p><strong>Soyad:</strong> ${soyad}</p>
+            <p><strong>Yaş:</strong> ${yas}</p>
+            <p><strong>TCKN:</strong> ${tckn}</p>
+            <p><strong>Kedi Sayısı:</strong> ${kediSayini}</p>
+            <p><strong>Backend:</strong> <span class="${backend}">${backend}</span></p>
+            <p><strong>Frontend:</strong> <span class="${frontend}">${frontend}</span></p>
+            <p><strong>Fullstack:</strong> <span class="${fullstack}">${fullstack}</span></p>
+        `;
+    </script>
+
+</body>
+</html>

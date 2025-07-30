@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sepet Toplamı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 40px;
+    }
+
+    .cart {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+      color: #007700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart">
+    <h2>Sepetiniz</h2>
+    <ul id="productList"></ul>
+    <div class="total" id="totalPrice"></div>
+  </div>
+
+  <script>
+    // Ürün listesi (ürün adı ve fiyat)
+    const sepet = [
+      { ad: "Kablosuz Kulaklık", fiyat: 750 },
+      { ad: "Bluetooth Hoparlör", fiyat: 1200 },
+      { ad: "Akıllı Saat", fiyat: 1900 },
+      { ad: "USB-C Şarj Kablosu", fiyat: 150 }
+    ];
+
+    const listDiv = document.getElementById("productList");
+    const totalDiv = document.getElementById("totalPrice");
+
+    let toplam = 0;
+
+    for (let i = 0; i < sepet.length; i++) {
+      const urun = sepet[i];
+      toplam += urun.fiyat;
+
+      const li = document.createElement("li");
+      li.textContent = `${urun.ad} - ₺${urun.fiyat}`;
+      listDiv.appendChild(li);
+    }
+
+    totalDiv.textContent = `Toplam Tutar: ₺${toplam}`;
+  </script>
+
+</body>
+</html>
