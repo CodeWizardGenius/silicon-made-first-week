@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toplama İşlemi</title>
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .sonuc {
+            font-size: 2rem;
+            color: #34495e;
+            background-color: #e1f5fe;
+            border: 2px solid #3498db;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+    <script>
+        function toplama(n1, n2) {
+            return n1 + n2;
+        }
+
+        document.writeln('<div class="sonuc">Toplam: ' + toplama(21, 2) + '</div>');
+    </script>
+</head>
+<body>
+</body>
+</html>

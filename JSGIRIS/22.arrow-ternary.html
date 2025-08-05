@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    const result = (yas) => 
+        yas >= 18 ? "Reşit" : "Reşit Değil";
+    window.onload = function() {
+        document.body.innerHTML = `
+            <h1>Yaş Kontrolü</h1>
+            <p>Yaşınız: 20</p>
+            <p>Sonuç: ${result(20)}</p>
+        `;  
+    };
+</script>
+<body>
+</body>
+</html>

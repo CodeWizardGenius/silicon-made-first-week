@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #2d3a4b;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+        ul {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 24px 32px;
+            list-style: none;
+            margin: 24px 0 0 0;
+        }
+        li {
+            color: #3a4a5d;
+            font-size: 1.2rem;
+            margin: 8px 0;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<script>
+    const ismler = ["Ali", "Ayşe", "Mehmet", "Fatma"];
+    const isimlerUst = ismler.map(isim => isim.toUpperCase());
+    window.onload = function() {
+        document.body.innerHTML = `
+            <h1>İsimler</h1>
+            <ul>
+                ${isimlerUst.map(isim => `<li>${isim}</li>`).join('')}
+            </ul>
+        `;
+    };
+</script>
+<body>
+    
+</body>
+</html>

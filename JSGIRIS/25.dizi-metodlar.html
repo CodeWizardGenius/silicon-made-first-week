@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+            margin: 0;
+            padding: 40px;
+        }
+        .output {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 24px 32px;
+            max-width: 500px;
+            margin: 40px auto;
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<script>
+    const nums = [1, 2, 3, 4, 5 ,0];
+    let index = nums.lastIndexOf(3);
+    let varMi = nums.includes(6);
+    let yeniDizi = nums.slice(1, 4);
+    const newArr = nums.concat(yeniDizi);
+    const sortedArray = nums.sort();
+    const revArray = sortedArray.reverse();
+
+    window.onload = function() {
+        const outputDiv = document.createElement('div');
+        outputDiv.className = 'output';
+        outputDiv.innerHTML =
+            "3 sayısı dizide son olarak " + index + ". indekste bulunuyor.<br>" +
+            "6 sayısı dizide " + (varMi ? "bulunuyor." : "bulunmuyor.") + "<br>" +
+            "Yeni Dizi: " + yeniDizi.join(", ") + "<br>" +
+            "Yeni Dizi (concat ile): " + newArr.join(", ") + "<br>"
+            + "Sıralanmış Dizi: " + sortedArray.join(", ") + "<br>" +
+            "Ters Çevrilmiş Dizi: " + revArray.join(", ");
+        document.body.appendChild(outputDiv);
+        
+    };
+</script>
+<body>
+    
+</body>
+</html>

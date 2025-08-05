@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            padding: 40px;
+        }
+        .sonuclar {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 24px 32px;
+            max-width: 400px;
+            margin: 40px auto;
+            font-size: 1.2em;
+        }
+        .sonuclar span {
+            display: block;
+            margin-bottom: 12px;
+        }
+    </style>
+    <script>
+        const kare = (a) => a * a;
+        const dikdortgen = (a, b) => a * b;
+        const ucgenAlani = (a, b, c) => {
+            const s = (a + b + c) / 2;
+            return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        };
+        window.onload = function() {
+            document.querySelector('.sonuclar').innerHTML = `
+                <span>Kare: ${kare(5)}</span>
+                <span>Dikdörtgen: ${dikdortgen(5, 10)}</span>
+                <span>Üçgen Alanı: ${ucgenAlani(3, 4, 5)}</span>
+            `;
+        };
+    </script>
+</head>
+
+<body>
+    <div class="sonuclar"></div>
+</body>
