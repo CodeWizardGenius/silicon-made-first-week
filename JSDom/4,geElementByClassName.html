@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">a</div>
+    <div class="box">b</div>
+    <div class="box">c</div>
+
+<script>
+    const boxes = document.getElementsByClassName("box")[0];
+    boxes.style.width = "200px";
+    boxes.style.height = "200px";
+    boxes.style.backgroundColor = "blue";
+    boxes.innerHTML = "This is a blue box!";
+    boxes.style.margin = "10px";
+    
+    const boxes2 = document.getElementsByClassName("box")[1];
+    boxes2.style.width = "150px";
+    boxes2.style.height = "150px";
+    boxes2.style.backgroundColor = "red";
+    boxes2.innerHTML = "This is a red box!";
+    boxes2.style.margin = "10px";
+    
+    const boxes3 = document.getElementsByClassName("box")[2];
+    boxes3.style.width = "100px";
+    boxes3.style.height = "100px";
+    boxes3.style.backgroundColor = "green";
+    boxes3.innerHTML = "This is a green box!";
+    boxes3.style.margin = "10px";
+
+</script>
+</body>
+</html>

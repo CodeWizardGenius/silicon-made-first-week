@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="meyveler"></ul>
+    <script>
+        const meyveler = document.getElementById("meyveler");
+        const meyveListesi = [
+            "Elma",
+            "Armut",
+            "Muz"
+        ];
+        const renkListesi = [
+            "red",
+            "yellow",
+            "blue"
+        ];
+        meyveListesi.forEach((meyve, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${meyve} (${renkListesi[index]})`;
+            li.style.color = renkListesi[index].toLowerCase();
+            li.style.fontSize = "20px";
+        
+            meyveler.appendChild(li);
+        });
+
+     
+    </script>
+</body>
+</html>
