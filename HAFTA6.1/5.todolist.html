@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 40px;
+        }
+        #todoInput {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 220px;
+            margin-right: 8px;
+        }
+        #addTodo {
+            padding: 10px 18px;
+            font-size: 1em;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #addTodo:hover {
+            background: #388e3c;
+        }
+        #todoList {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+            max-width: 320px;
+        }
+        #todoList li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="todoInput" placeholder="Yeni görev ekle...">
+    <button id="addTodo">Ekle</button>
+    <ul id="todoList"></ul>
+
+    <script>
+        const todoInput = document.getElementById('todoInput');
+        const addTodoButton = document.getElementById('addTodo');
+        const todoList = document.getElementById('todoList');
+
+        addTodoButton.addEventListener('click', function() {
+            const todoText = todoInput.value.trim();
+            if (todoText) {
+                const li = document.createElement('li');
+                li.textContent = todoText;
+                todoList.appendChild(li);
+                todoInput.value = '';
+            } else {
+                alert('Lütfen bir görev girin.');
+            }
+        });
+    </script>
+</body>
+</html>
