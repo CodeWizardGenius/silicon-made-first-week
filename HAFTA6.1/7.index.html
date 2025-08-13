@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f4f4f4;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        ul#booklist {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            list-style: none;
+        }
+        ul#booklist li {
+            padding: 16px 24px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            color: #333;
+            transition: background 0.2s;
+        }
+        ul#booklist li:last-child {
+            border-bottom: none;
+        }
+        ul#booklist li:hover {
+            background: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <ul id="booklist"></ul>
+    <script>
+        const booklist = document.getElementById('booklist');
+        const books = [
+            { title: 'To Kill a Mockingbird', author: 'Harper Lee' },
+            { title: '1984', author: 'George Orwell' },
+            { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+            { title: 'Pride and Prejudice', author: 'Jane Austen' },
+            { title: 'The Catcher in the Rye', author: 'J.D. Salinger' }
+        ];
+        const bookLiArray = books.map(book => {
+            const li = document.createElement('li');
+            li.textContent = `${book.title} by ${book.author}`;
+            return li;
+        });
+        const bookLiString = bookLiArray.map(li => li.outerHTML).join('');
+        booklist.innerHTML = bookLiString;
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="paintingList"></ul>
+
+    <script>
+        const paintingList = document.getElementById('paintingList');
+        const paintings = [
+            { title: 'Starry Night', artist: 'Vincent van Gogh' },
+            { title: 'Mona Lisa', artist: 'Leonardo da Vinci' },
+            { title: 'The Scream', artist: 'Edvard Munch' },
+            { title: 'The Persistence of Memory', artist: 'Salvador Dalí' },
+            { title:  'The Birth of Venus', artist: 'Sandro Botticelli' }
+        ];
+        const newPaintings = paintings.filter(painting => painting.artist !== 'Vincent van Gogh' || painting.artist === 'Salvador Dalí');
+        const liArray = newPaintings.map(painting => {
+            const li = document.createElement('li');
+            li.textContent = `${painting.title} by ${painting.artist}`;
+            return li;
+        });
+        paintingList.innerHTML = liArray.map(li => li.outerHTML).join('');
+    </script>
+</body>
+</html>

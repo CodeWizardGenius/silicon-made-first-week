@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f4f4f4;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        ul#foodlist {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            list-style: none;
+        }
+        ul#foodlist li {
+            padding: 16px 24px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            color: #333;
+            transition: background 0.2s;
+        }
+        ul#foodlist li:last-child {
+            border-bottom: none;
+        }
+        ul#foodlist li:hover {
+            background: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <ul id="foodlist"></ul>
+    <script>
+        const foodList = document.getElementById('foodlist');
+        const foods = [
+            { name: 'Pizza', icon: '🍕' },
+            { name: 'Burger', icon: '🍔' },
+            { name: 'Pasta', icon: '🍝' },
+            { name: 'Salad', icon: '🥗' },
+            { name: 'Sushi', icon: '🍣' }
+        ];
+
+        foods.forEach(food => {
+            const li = document.createElement('li');
+            li.textContent = `${food.icon} ${food.name}`;
+            foodList.appendChild(li);
+        });
+    </script>
+</body>
+</html>

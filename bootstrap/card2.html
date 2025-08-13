@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col justify-center items-center">
+        <div class="flex gap-2">
+            <label class="input">
+                <span class="label">Film</span>
+                <input type="text" placeholder="Film Gir" id="filmInput"/>
+            </label>
+            <button id="submitBtn" class="btn btn-primary">Submit</button>
+        </div>
+        <ul id="filmList" class="flex flex-col gap-2 mt-6 w-full max-w-xs"></ul>
+    </div>
+    <script>
+        const filmInput = document.getElementById('filmInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const filmList = document.getElementById('filmList');
+
+        submitBtn.addEventListener('click', () => {
+            const filmName = filmInput.value.trim();
+            if (filmName) {
+                const li = document.createElement('li');
+                li.className = "bg-base-200 rounded px-4 py-2 shadow flex justify-between items-center";
+                li.innerHTML = `<span>${filmName}</span> <button class='btn btn-error btn-xs ml-2'>Sil</button>`;
+                const deleteBtn = li.querySelector('button');
+                deleteBtn.addEventListener('click', () => {
+                    li.remove();
+                });
+                filmList.appendChild(li);
+                filmInput.value = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
