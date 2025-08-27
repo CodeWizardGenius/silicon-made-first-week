@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const kisiler = [
+            { ad: "Ahmet", yas: 30 },
+            { ad: "Mehmet", yas: 25 },
+            { ad: "İsmet", yas: 35 }
+        ];
+
+        const kisilerStr = JSON.stringify(kisiler);
+        localStorage.setItem("kisiler", kisilerStr);
+        const kisilerGeri = JSON.parse(localStorage.getItem("kisiler"));
+        console.log(kisilerGeri);
+        kisilerGeri.forEach(function(kisi) {
+            document.write("Ad: " + kisi.ad + ", Yaş: " + kisi.yas + "<br>");
+        });
+    </script>
+
+
+</body>
+
+</html>

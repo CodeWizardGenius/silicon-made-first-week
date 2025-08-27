@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            all: unset;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 10px;
+            background-color: black;
+        }
+        button {
+            all: unset;
+            background-color: white;
+            cursor: pointer;
+            text-align: center;
+            border: 3px solid darkcyan;
+            border-radius: 10px;
+            width: 80px;
+            height: 50px;
+            font-size: 20px;
+        }
+        span {
+            color: white;
+            font-size: 30px;
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="plus">Arttir</button>
+    <span id="text"></span>
+    <button id="minus">Azalt</button>
+    <script>
+        let text = document.getElementById("text");
+        let plus = document.getElementById("plus");
+        let minus = document.getElementById("minus");
+
+        let count = localStorage.getItem("count") ? parseInt(localStorage.getItem("count")) : 0;
+        text.innerText = count;
+
+        plus.addEventListener("click", () => {
+            count++;
+            text.innerText = count;
+            localStorage.setItem("count", count);
+        });
+
+        minus.addEventListener("click", () => {
+            count--;
+            text.innerText = count;
+            localStorage.setItem("count", count);
+        });
+    </script>
+</body>
+</html>

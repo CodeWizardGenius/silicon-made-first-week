@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const isimler = ["Ahmet", "Mehmet", "İsmet", "Saffet"];
+        const isimlerStr = JSON.stringify(isimler);
+        localStorage.setItem("isimler", isimlerStr);
+        const isimlerGeri = JSON.parse(localStorage.getItem("isimler"));
+
+        isimlerGeri.forEach(function(isim) {
+           document.write(isim + "<br>");
+        });
+
+    </script>
+</body>
+</html>

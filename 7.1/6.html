@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const users = [
+        { name: "Alice", age: 28 },
+        { name: "Bob", age: 34 },
+        { name: "Charlie", age: 22 }
+    ];
+    
+    const storageKey = "users";
+
+    function readUsersFromLocalStorage(key) {
+        const usersStr = localStorage.getItem(key);
+        if (usersStr) {
+            return JSON.parse(usersStr);
+        }
+        return [];
+    }
+    
+    function saveUsersToLocalStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    }
+    saveUsersToLocalStorage(storageKey, users);
+    const usersFromStorage = readUsersFromLocalStorage(storageKey);
+    usersFromStorage.forEach(function(user) {
+        document.write(`Name: ${user.name}, Age: ${user.age}<br>`);
+    });
+    </script>
+</body>
+</html>
