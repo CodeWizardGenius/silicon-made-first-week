@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="pokemonsUI">
+        <li><a href="#">Bulbasaur</a></li>
+    </ul>
+
+    <script>
+        
+    const pokemonUI = document.getElementById("pokemonsUI");
+
+    async function getPokemons(){
+        try {
+            const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25");
+            if (!response.ok) {
+                throw new Error("Ağ isteği başarısız oldu");
+            }
+            const data = await response.json();
+            const pokemonList = data.results.map(pokemon => `<li><a href="#">${pokemon.name}</a></li>`).join("");
+            pokemonUI.innerHTML = pokemonList;
+            console.log(data);
+        } catch (error) {
+            pokemonUI.innerHTML = `<p style="color:red;">Hata: ${error.message}</p>`;
+            alert("Bir hata oluştu: " + error.message);
+        }
+    }
+
+    getPokemons();
+
+    </script>
+</body>
+</html>
