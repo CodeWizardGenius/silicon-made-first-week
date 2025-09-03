@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hava Durumu API</title>
+    <style>
+        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; padding: 20px; }
+        div { margin-bottom: 10px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <h1>Tekirdağ Hava Durumu</h1>
+    <div id="konumDiv">Konum yükleniyor...</div>
+    <div id="sicaklikDiv">Sıcaklık yükleniyor...</div>
+    <div id="ruzgarDiv">Rüzgar Hızı yükleniyor...</div>
+    <div id="tarihDiv">Tarih yükleniyor...</div>
+
+    <script>
+        const apiKey = "fbd5dfe8e7c950154fceea4276f4c3a8";
+        // Tekirdağ koordinatları
+        const lat = 40.9781;
+        const lon = 27.5117;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=tr`;
+
+        const sicaklikDiv = document.getElementById("sicaklikDiv");
+        const konumDiv = document.getElementById("konumDiv");
+        const ruzgarDiv = document.getElementById("ruzgarDiv");
+        const tarihDiv = document.getElementById("tarihDiv");
+
+         fetch(url)
+            .then(response => {
+                // fetch() promise'i 401 gibi HTTP hatalarında reject olmaz.
+                // Bu yüzden yanıtın başarılı olup olmadığını (response.ok) kontrol etmeliyiz.
+                if (!response.ok) {
+                    // Yanıt başarılı değilse, durumu belirten bir hata fırlatıyoruz.
+                    throw new Error(`HTTP hatası! Durum: ${response.status}`);
+                }
+                return response.json(); // Yanıt başarılıysa JSON'a çeviriyoruz.
+            })
+            .then(data => {
+                // Gelen verinin doğru formatta olduğunu kontrol edelim.
+                if (data.cod !== 200) {
+                    throw new Error(`API Hatası: ${data.message}`);
+                }
+                konumDiv.innerHTML = `<strong>Konum:</strong> ${data.name}`;
+                sicaklikDiv.innerHTML = `<strong>Sıcaklık:</strong> ${data.main.temp} °C`;
+                ruzgarDiv.innerHTML = `<strong>Rüzgar Hızı:</strong> ${data.wind.speed} m/s`;
+                const tarih = new Date(data.dt * 1000);
+                tarihDiv.innerHTML = `<strong>Tarih:</strong> ${tarih.toLocaleDateString('tr-TR')} ${tarih.toLocaleTimeString('tr-TR')}`;
+            })
+            .catch(error => {
+                console.error("Hava durumu verisi alınırken bir hata oluştu:", error.message);
+                let userMessage = "Veri alınamadı. Lütfen daha sonra tekrar deneyin.";
+                if (error.message.includes("401")) {
+                    userMessage = "API anahtarı geçersiz veya henüz aktif değil. Lütfen OpenWeatherMap hesabınızdan anahtarınızı kontrol edin. Yeni anahtarların aktif olması birkaç saat sürebilir.";
+                }
+                document.body.innerHTML = `<h1>Bir Sorun Oluştu</h1><p>${userMessage}</p>`;
+            });
+
+    </script>
+</body>
+</html>
