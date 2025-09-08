@@ -1,5 +1,22 @@
 {
   "dependencies": {
     "axios": "^1.11.0"
-  }
+  },
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js",
+    "start:axios": "node api-axios.js",
+    "start:functions": "node functions-age-lisance.js",
+    "start:pokemon": "node input-api.js",
+    "start:readfile": "node readFile.js",
+    "start:writefile": "node writefile.js"
+  },
+  "author": "Baris Karapelit",
+  "license": "ISC"
 }

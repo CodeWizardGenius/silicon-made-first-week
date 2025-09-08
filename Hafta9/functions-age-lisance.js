@@ -4,17 +4,21 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("How old are you  ? ", function(ageString) {
+rl.question("Kac Yasindaniz   ? ", function(ageString) {
     const age = parseInt(ageString, 10);
+    isEhliyet(age);
+});
+
+function isEhliyet(age) {
     if (isNaN(age) || age <= 0) {
-        console.log("Please enter a valid age.");
+        console.log("Lütfen geçerli bir yaş giriniz.");
     } else if (age < 18) {
         console.log("Ehiliyet alamazsın");
     } else {
         console.log("Ehliyet alabilirsin");
     }
     rl.close();
-});
+}
 
 rl.on("close", function() {
     console.log("\nBYE BYE !!!");
