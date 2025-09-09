@@ -15,7 +15,8 @@
     "start:functions": "node functions-age-lisance.js",
     "start:pokemon": "node input-api.js",
     "start:readfile": "node readFile.js",
-    "start:writefile": "node writefile.js"
+    "start:writefile": "node writefile.js",
+    "start:homework": "node homework.js"
   },
   "author": "Baris Karapelit",
   "license": "ISC"
