@@ -16,7 +16,9 @@
     "start:pokemon": "node input-api.js",
     "start:readfile": "node readFile.js",
     "start:writefile": "node writefile.js",
-    "start:homework": "node homework.js"
+    "start:homework": "node homework.js",
+    "start:homework2": "node homework-2.js",
+    "start:sayisalloto": "node sayisalloto.js"
   },
   "author": "Baris Karapelit",
   "license": "ISC"

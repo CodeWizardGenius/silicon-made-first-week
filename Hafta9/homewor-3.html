@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Çoklu Liste Uygulaması</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+  </style>
+</head>
+<body class="min-h-dvh bg-[#0f172a] text-slate-100">
+  <div class="max-w-3xl mx-auto p-6">
+    <!-- Top Create New List bar -->
+    <div class="space-y-2 mb-6">
+      <input id="newListName" type="text" placeholder="New list name..." class="w-full rounded-md bg-[#0b1220] border border-slate-700 px-4 py-2 outline-none focus:ring-2 focus:ring-sky-500/50" />
+      <button id="createListBtn" class="w-full rounded-md bg-[#101826] border border-slate-800 py-2 text-slate-200 hover:bg-[#0c1422] active:bg-[#0b121e] transition">Create New List</button>
+    </div>
+
+    <!-- Lists -->
+    <div id="listsContainer" class="space-y-6"></div>
+  </div>
+
+  <!-- Templates -->
+  <template id="listTemplate">
+    <section class="rounded-md bg-[#1b2436] border border-slate-600/60 shadow-inner">
+      <!-- Header -->
+      <div class="px-5 pt-4 pb-3">
+        <h2 class="text-lg font-semibold list-title">Liste</h2>
+      </div>
+      <div class="px-5 pb-5 space-y-3">
+        <!-- Add item form -->
+        <input type="text" placeholder="Add a new item..." class="w-full rounded-md bg-[#0b1220] border border-slate-700 px-4 py-2 outline-none focus:ring-2 focus:ring-sky-500/40 add-item-input" />
+        <button class="w-full rounded-md bg-[#121a2a] border border-slate-800 py-2 hover:bg-[#0f1726] active:bg-[#0c1321] transition add-item-btn">Add Item</button>
+
+        <!-- Items -->
+        <ul class="space-y-3 items"></ul>
+      </div>
+    </section>
+  </template>
+
+  <template id="itemTemplate">
+    <li class="flex items-center justify-between">
+      <span class="text-slate-200 item-text"></span>
+      <div class="flex gap-2">
+        <button class="px-3 py-1 rounded-md text-sm bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white complete-btn">Complete</button>
+        <button class="px-3 py-1 rounded-md text-sm bg-pink-500 hover:bg-pink-400 active:bg-pink-600 text-white delete-btn">Delete</button>
+      </div>
+    </li>
+  </template>
+
+  <script>
+    // Storage helpers
+    const STORAGE_KEY = 'multi-list-app:v2';
+    const loadState = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? { lists: [] }; } catch { return { lists: [] }; } };
+    const saveState = s => localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+
+    // State
+    let state = loadState();
+
+    // DOM
+    const listsContainer = document.getElementById('listsContainer');
+    const newListName = document.getElementById('newListName');
+    const createListBtn = document.getElementById('createListBtn');
+    const listTpl = document.getElementById('listTemplate');
+    const itemTpl = document.getElementById('itemTemplate');
+
+    const uid = () => crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+
+    function render() {
+      listsContainer.innerHTML = '';
+      state.lists.forEach((list, idx) => {
+        const node = listTpl.content.firstElementChild.cloneNode(true);
+        node.dataset.id = list.id;
+        node.querySelector('.list-title').textContent = list.title || `Liste ${idx+1}`;
+
+        const input = node.querySelector('.add-item-input');
+        const addBtn = node.querySelector('.add-item-btn');
+        const ul = node.querySelector('.items');
+
+        const addItem = () => {
+          const text = input.value.trim();
+          if (!text) return;
+          list.items.push({ id: uid(), text, done: false });
+          input.value = '';
+          saveState(state); render();
+        };
+        addBtn.addEventListener('click', addItem);
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addItem(); } });
+
+        list.items.forEach(item => {
+          const li = itemTpl.content.firstElementChild.cloneNode(true);
+          li.dataset.id = item.id;
+          const textEl = li.querySelector('.item-text');
+          textEl.textContent = item.text;
+          if (item.done) textEl.classList.add('line-through','text-slate-400');
+
+          li.querySelector('.complete-btn').addEventListener('click', () => {
+            item.done = !item.done; saveState(state); render();
+          });
+          li.querySelector('.delete-btn').addEventListener('click', () => {
+            list.items = list.items.filter(i => i.id !== item.id); saveState(state); render();
+          });
+          ul.appendChild(li);
+        });
+
+        listsContainer.appendChild(node);
+      });
+    }
+
+    // create list
+    function createList() {
+      const title = (newListName.value || '').trim() || `Liste ${state.lists.length + 1}`;
+      state.lists.push({ id: uid(), title, items: [] });
+      newListName.value = '';
+      saveState(state); render();
+    }
+    createListBtn.addEventListener('click', createList);
+    newListName.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); createList(); } });
+
+    render();
+  </script>
+</body>
+</html>
